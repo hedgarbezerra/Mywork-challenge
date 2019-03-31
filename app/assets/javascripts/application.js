@@ -18,27 +18,28 @@
 //= require turbolinks
 //= require_tree .
 
-/*var map;
+var map;
 var directionsDisplay;
 var directionsService;
 var latlng;
-var marker;*/
+var marker;
 var geocoder;
 
 
 function initMap(lat, lng) {
     var myCoords = new google.maps.LatLng(lat, lng);
     var mapOptions = {
-    center: myCoords,
-    zoom: 15,
-    disableDefaultUI: true
+        center: myCoords,
+        zoom: 15,
+        disableDefaultUI: true,
+        zoomControl: true
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     var marker = new google.maps.Marker({
-    position: myCoords,
-    map: map
-});
+        position: myCoords,
+        map: map
+    });
 }
 
 
@@ -46,9 +47,9 @@ function initMap2() {
     geocoder = new google.maps.Geocoder();
     var lat = document.getElementById('latitude').value;
     var lng = document.getElementById('longitude').value;
-    if (!lat || !lng){
-        lat=-23.944394;
-        lng=-46.354350;
+    if (!lat || !lng) {
+        lat = -23.944394;
+        lng = -46.354350;
         document.getElementById('latitude').value = lat;
         document.getElementById('longitude').value = lng;
     }
@@ -56,7 +57,8 @@ function initMap2() {
     var mapOptions = {
         center: myCoords,
         zoom: 14,
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        zoomControl: true
     };
     var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
     var marker = new google.maps.Marker({
@@ -65,14 +67,26 @@ function initMap2() {
         map: map,
         draggable: true
     });
+    google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+    });
 
+    function placeMarker(location) {
 
-    function refreshMarker(){
+        newlat = (Math.round(location.lat() * 1000000)) / 1000000;
+        newlng = (Math.round(location.lng() * 1000000)) / 1000000;
+        document.getElementById('latitude').value = newlat;
+        document.getElementById('longitude').value = newlng
+        marker.setPosition(location);
+        map.setCenter(marker.getPosition());
+    }
+
+    function refreshMarker() {
         var lat = document.getElementById('latitude').value;
         var lng = document.getElementById('longitude').value;
         var myCoords = new google.maps.LatLng(lat, lng);
         marker.setPosition(myCoords);
-        map.setCenter(marker.getPosition());   
+        map.setCenter(marker.getPosition());
     }
 
 
@@ -82,132 +96,75 @@ function initMap2() {
     // when marker is dragged update input values
     marker.addListener('drag', function() {
         latlng = marker.getPosition();
-        newlat=(Math.round(latlng.lat()*1000000))/1000000;
-        newlng=(Math.round(latlng.lng()*1000000))/1000000;
+        newlat = (Math.round(latlng.lat() * 1000000)) / 1000000;
+        newlng = (Math.round(latlng.lng() * 1000000)) / 1000000;
         document.getElementById('latitude').value = newlat;
         document.getElementById('longitude').value = newlng;
     });
 
+
+
     marker.addListener('dragend', function() {
-        map.panTo(marker.getPosition());   
+        map.panTo(marker.getPosition());
     });
 
-}
+    $('input[type=text]').on('keydown', function(e) {
+        if (e.which == 9) {
+            var address = document.getElementById('address').value
+            geocoder.geocode({ 'address': address, 'region': 'BR' }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        lat = results[0].geometry.location.lat();
+                        lng = results[0].geometry.location.lng();
+                        var location = new google.maps.LatLng(lat, lng);
+                        marker.setPosition(location);
+                        map.setCenter(marker.getPosition());
+                        map.setZoom(13);
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lng;
+                    }
+                }
+            });
 
-    function endereco(address) {
-    geocoder.geocode({ 'address': address, 'region': 'BR' }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-                lat = results[0].geometry.location.lat();
-                lng = results[0].geometry.location.lng();
-                var myCoords = new google.maps.LatLng(lat, lng);
-                console.log(results[0].formatted_address);
-                var mapOptions = {
-                center: myCoords,
-                zoom: 14,
-                disableDefaultUI: true
-                };
-                var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
-                marker = new google.maps.Marker({
-                    map: map,
-                    title: results[0].formatted_address,
-                    draggable: true,
-                });
-               document.getElementById('latitude').value = lat;
-                document.getElementById('longitude').value = lng;
-                var location = new google.maps.LatLng(lat, lng);
-                marker.setPosition(location);
-                map.setCenter(location);
-                map.setZoom(13);
-            }
         }
     });
-    
+
+
 }
 
 
-function parse_end(lat, lng) {  
+
+function parse_end(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    geocoder.geocode({ 'latLng': latlng }, function(results, status) {
         if (status !== google.maps.GeocoderStatus.OK) {
             alert(status);
         }
         if (status == google.maps.GeocoderStatus.OK) {
             var address = (results[0].formatted_address);
-            document.getElementById('address').innerHTML = address;  
+            document.getElementById('address').innerHTML = address;
         }
     });
 }
 
 
 function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('clock').innerHTML =
-  h + ":" + m + ":" + s;
-  var t = setTimeout(startTime, 500);
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+        h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
 
 }
 
 function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-
-
-
-
-
-
-
-
-
-function inixe() {
-  var myOptions = {
-    zoom: 12,
-    center: new google.maps.LatLng(0, 0),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  var map = new google.maps.Map(
-    document.getElementById("map"),
-    myOptions);
-  setMarkers(map, beaches);
-}
-
-var beaches  = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 161.259052, 5],
-  ['Cronulla Beach', -36.028249, 153.157507, 3],
-  ['Manly Beach', -31.80010128657071, 151.38747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.159302, 1]
-];
-
-function setMarkers(map, locations) {
-  var shape = {
-    coord: [1, 1, 1, 20, 18, 20, 18 , 1],
-    type: 'poly'
-  };
-  var bounds = new google.maps.LatLngBounds();
-  for (var i = 0; i < locations.length; i++) {
-    var beach = locations[i];
-    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      shadow: shadow,
-      icon: image,
-      shape: shape,
-      title: beach[0],
-      zIndex: beach[3]
-    });
-    bounds.extend(myLatLng);
-  }
-  map.fitBounds(bounds);
+    if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
+    return i;
 }
 
 
