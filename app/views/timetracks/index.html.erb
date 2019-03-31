@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Home </h1>
+<h2>Welcome back, <%= current_user.name %></h2>
+<div class="search">
+<%= form_tag( timetracks_path, :method => 'GET') do %>
+  <strong> Specific ID or user? </strong>
+   <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+</div>
+
+<table class="table ">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Name </th>
+      <th scope="col">Date</th>
+      <th scope="col">Details </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @timetracks.each do |timetrack| %>
+      <% if current_user.user_role != 1 && timetrack.user.id == current_user.id  %> 
+          <tr scope="row">
+            <td><%= timetrack.id%></td>
+             <td><%= timetrack.user.id%></td>
+            <td><%= timetrack.user.name %></td>
+            <td><%= timetrack.user.created_at %></td>
+            <td><%= link_to 'Show more', timetrack %></td>
+          </tr>            
+      <% end %>
+
+      <% else 
+      if current_user.user_role == 1 && timetrack.user.user_role != 1 %> 
+      <tr scope="row">
+            <td><%= timetrack.id%></td>
+            <td><%= timetrack.user.id%></td>
+            <td><%= timetrack.user.name %></td>
+            <td><%= timetrack.user.created_at %></td>
+            <td><%= link_to 'Show more', timetrack %></td>
+          </tr>            
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

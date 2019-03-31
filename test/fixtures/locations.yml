@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc: MyString
+  km_limit: 1
+  longitude: 9.99
+  latitude: 9.99
+  user: one
+
+two:
+  desc: MyString
+  km_limit: 1
+  longitude: 9.99
+  latitude: 9.99
+  user: two

@@ -1,0 +1,79 @@
+
+<nav class="navbar navbar-inverse " style="background-color: #1A1C37" "color: white">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://github.com/hedgarbezerra/Mywork-challenge">MyWork </a>
+        </div>
+
+        <% if !user_signed_in? %>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <%= link_to "<span class='glyphicon glyphicon-user'> SignUp </span>".html_safe, signup_path %>
+                </li>
+                <li>
+                    <%= link_to "<span class='glyphicon glyphicon-log-in'> Login </span>".html_safe, login_path %>
+                </li>
+            </ul>
+        </div>
+      <% end %>
+
+        <% if user_signed_in? && current_user.user_role==1 %>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <%= link_to 'Home', index_path %>
+                </li>
+                <li>
+                    <%= link_to 'Savepoint', savepoint_path %>
+                </li>
+                <li>
+                    <%= link_to 'Offices', offices_path %>
+                </li>
+                <li>
+                    <%= link_to 'New Office ', office_path %>
+                </li>
+
+                <li>
+                    <%= link_to 'Account', account_path %>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <%= link_to "<span class='glyphicon glyphicon-log-out'> Logout </span>".html_safe, logout_path, method: :delete  %>
+                </li>
+            </ul>
+                  <ul class="nav navbar-nav navbar-right">
+ 
+      <% end %>
+
+      <% if user_signed_in? && current_user.user_role==2 %>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <%= link_to 'Home', index_path %>
+                </li>
+                <li>
+                    <%= link_to 'Savepoint', savepoint_path %>
+                </li>
+                 <li>
+                    <%= link_to 'Account', account_path %>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <%= link_to "<span class='glyphicon glyphicon-log-out'> Logout </span>".html_safe, logout_path, method: :delete  %>
+                    
+                </li>
+            </ul>
+
+ 
+<% end %>
+    </div>
+</nav>

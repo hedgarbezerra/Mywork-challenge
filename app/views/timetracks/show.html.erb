@@ -1,0 +1,47 @@
+<% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      initMap(<%=@timetrack.latitude%>, <%=@timetrack.longitude%>);
+        parse_end(<%=@timetrack.latitude%>, <%=@timetrack.longitude%>);
+    });
+  </script>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @timetrack.user.name %>
+</p>
+
+<p>
+  <strong>User commentary: </strong>
+  <%= @timetrack.comment %>
+</p>
+
+<p>
+  <strong>Address: </strong>
+<span id="address"></span>
+</p>
+
+<p>
+  <strong>User commentary: </strong>
+  <%= @timetrack.comment %>
+</p>
+<p>
+  <strong>Longitude:</strong>
+  <%= @timetrack.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @timetrack.latitude %>
+</p>
+
+<p>
+  <strong>This happend on: </strong>
+  <%= @timetrack.created_at %>
+</p>
+<div class="map" id="map">
+	
+</div>

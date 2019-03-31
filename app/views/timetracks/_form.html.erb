@@ -1,0 +1,47 @@
+<% provide :head_tags do %>
+<meta name='turbolinks-visit-control' content='reload'>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    initMap2();
+    startTime();
+    $('input[type=text]').on('keydown', function(e) {
+        if (e.which == 9) {
+            var address = document.getElementById('address').value
+            endereco(address)
+        }
+    });
+});
+</script>
+<% end %>
+<div id="clock" class="clock"></div>
+<%= form_with(model: timetrack, local: true) do |form| %>
+<% if timetrack.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(timetrack.errors.count, "error") %> prohibited this timetrack from being saved:</h2>
+    <ul>
+        <% timetrack.errors.full_messages.each do |message| %>
+        <li>
+            <%= message %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<br>
+<div class="fox">
+    <h1>Savepoint</h1>
+    <%= form.label :address %> <br>
+    <%= form.text_field :address, {id: 'address'} %> <br>
+    <%= form.label :latitude %> <br>
+    <%= form.text_field :latitude, {id: 'latitude' } %> <br>
+    <%= form.label :longitude%> <br>
+    <%= form.text_field :longitude, {id: 'longitude' }%> <br>
+    <%= form.label :'Any comments?' %> <br>
+    <%= form.text_field :comment %> <br>
+    <%= form.label :'Your ID' %> <br>
+    <%= form.text_field :user_id, :value => current_user.id, :readonly => true %>
+    <div class="map" id="map2"></div>
+    <%= form.submit %>
+</div>
+<% end %>
