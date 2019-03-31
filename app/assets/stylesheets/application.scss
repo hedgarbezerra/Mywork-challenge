@@ -17,20 +17,22 @@
 @import "bootstrap";
 
 
-body{
-	margin: auto;
+body {
+    margin: auto;
     font-size: 14px;
-	font-family: sans-serif;
-	font-weight: 200;
-	background: #483D8B;
-	color: white;
+    font-family: sans-serif;
+    font-weight: 200;
+    background: #483D8B;
+    color: white;
 }
- a{
+
+a {
     color: white;
     font-family: inherit;
     font-size: inherit;
- }   
-.container{
+}
+
+.container {
     padding: 40px 40px 40px 40px;
     margin: auto;
     font-size: 14px;
@@ -39,23 +41,24 @@ body{
     background: #483D8B;
     color: white;
 }
+
 h1 {
     text-align: center;
     color: white;
     text-transform: uppercase;
-    text-shadow: 5px 14px 20px rgba(52,152,219,0.64);
+    text-shadow: 5px 14px 20px rgba(52, 152, 219, 0.64);
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.search{
-     float: right;
-     margin: 10px 10px 10px 10px;   
+.search {
+    float: right;
+    margin: 10px 10px 10px 10px;
     padding: 15px 10px 10px 15px;
 
 }
 
-.map{
+.map {
 
     margin: 20px 10px 10px 20px;
     width: 450px;
@@ -66,20 +69,22 @@ h1 {
     max-height: 500px;
     max-width: 400px;
 }
+
 #myNavbar {
     z-index: 9;
     font-family: inherit;
     font-size: 14px;
     color: white;
 }
-.glyphicon{
-    color: white;
- }
 
-.ref { 
+.glyphicon {
+    color: white;
+}
+
+.ref {
     margin: auto;
     color: white;
-    font-weight: 500; 
+    font-weight: 500;
     display: inline-block;
     float: right;
 }
@@ -121,14 +126,16 @@ h1 {
     padding-bottom: 5px;
     color: white;
     text-transform: uppercase;
-    font-weight:450;
+    font-weight: 450;
 }
-.loginbox input[type="radio"]{
-    margin:auto;
+
+.loginbox input[type="radio"] {
+    margin: auto;
 
 }
 
-.loginbox input[type="text"], .loginbox input[type="password"]  {
+.loginbox input[type="text"],
+.loginbox input[type="password"] {
     border: 0;
     background: none;
     display: block;
@@ -143,7 +150,8 @@ h1 {
     transition: 0.30s;
 }
 
-.loginbox input[type="text"]:focus, .loginbox input[type="password"]:focus {
+.loginbox input[type="text"]:focus,
+.loginbox input[type="password"]:focus {
     width: 280px;
     color: white;
     border-color: #2ecc71;
@@ -168,7 +176,10 @@ h1 {
 .loginbox input[type="submit"]:hover {
     background: #2ecc71;
 }
- input[type="text"],  input[type="password"], input[type="number"]  {
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
     margin: 5px 5px 5px 5px;
     border: 0;
     background: none;
@@ -182,7 +193,9 @@ h1 {
     transition: 0.30s;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
     width: 280px;
     color: white;
     border-color: #2ecc71;
@@ -200,19 +213,21 @@ input[type="submit"] {
     color: white;
     border-radius: 24px;
     transition: 0.30s;
-	cursor: pointer;
+    cursor: pointer;
 }
 
- input[type="submit"]:hover {
+input[type="submit"]:hover {
     background: #2ecc71;
 }
+
 .form_login {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate3d(-50%, -50%, 0);
 }
-.fox{
+
+.fox {
     z-index: 4;
     margin-top: 220px;
     max-height: auto;
@@ -230,9 +245,9 @@ input[type="submit"] {
     font-family: Orbitron;
     letter-spacing: 7px;
     float: left;
-    position: fixed;     
+    position: fixed;
     width: 150px;
-    background: #1A1C37 ;
+    background: #1A1C37;
     text-align: center;
     border: 2px solid #3498db;
     padding: 20px 10px;
@@ -242,6 +257,3 @@ input[type="submit"] {
     transition: 0.30s;
 
 }
-
-
-
