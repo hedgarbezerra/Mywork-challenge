@@ -4,12 +4,13 @@ class TimetracksController < ApplicationController
     # GET /timetracks
   # GET /timetracks.json
   def index
-    @searh = params["search"]
-    if @search.present?
-      @id = @search["id"]
-      @timetracks = Timetrack.where('id LIKE ?', "%#{@id}%")
-    else
-       @timetracks = Timetrack.all
+
+    if  params[:search].present?
+      @search = params[:search]
+      @timetracks = Timetrack.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%")
+    
+    else 
+       @timetracks = Location.all
     end
   end
    

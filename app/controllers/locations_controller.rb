@@ -4,7 +4,15 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+
+    if  params[:search].present?
+      @search = params[:search]
+      @locations = Location.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%")
+      #@locations = Location.joins(:user).where("users.name = ?","%#{@search}%")
+      #@locations = Location.joins(:user).where("users.name = ? ","%#{@search}%")
+    else 
+       @locations = Location.all
+    end
   end
 
   # GET /locations/1

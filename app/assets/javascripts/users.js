@@ -1,4 +1,4 @@
-$("#fox").validate({
+/*$("#fox").validate({
        rules : {
              username:{
                     required:true,
@@ -54,3 +54,4 @@ $("#form").validate({
             }
         }
 });
+*/

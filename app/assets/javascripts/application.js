@@ -42,21 +42,22 @@ function initMap(lat, lng) {
     });
 }
 
-
-function initMap2() {
+function initMap2(locations) {
     geocoder = new google.maps.Geocoder();
+    var Circle ;
+    var bounds;
     var lat = document.getElementById('latitude').value;
     var lng = document.getElementById('longitude').value;
     if (!lat || !lng) {
-        lat = -23.944394;
-        lng = -46.354350;
+        lat = -23.5631043;
+        lng = -46.6543825;
         document.getElementById('latitude').value = lat;
         document.getElementById('longitude').value = lng;
     }
     var myCoords = new google.maps.LatLng(lat, lng);
     var mapOptions = {
         center: myCoords,
-        zoom: 14,
+        zoom: 12,
         disableDefaultUI: true,
         zoomControl: true
     };
@@ -67,12 +68,30 @@ function initMap2() {
         map: map,
         draggable: true
     });
+
+    for (var location in locations) {
+        var latx = locations[location].latitude
+        var lngx = locations[location].longitude
+        var centro = new google.maps.LatLng(latx, lngx);
+            Circle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2, 
+            clickable: true,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: centro,
+            radius: locations[location].meters
+        });
+           bounds = Circle.getBounds();
+    };
+
     google.maps.event.addListener(map, 'click', function(event) {
         placeMarker(event.latLng);
     });
 
     function placeMarker(location) {
-
         newlat = (Math.round(location.lat() * 1000000)) / 1000000;
         newlng = (Math.round(location.lng() * 1000000)) / 1000000;
         document.getElementById('latitude').value = newlat;
@@ -87,13 +106,13 @@ function initMap2() {
         var myCoords = new google.maps.LatLng(lat, lng);
         marker.setPosition(myCoords);
         map.setCenter(marker.getPosition());
+
     }
 
 
     document.getElementById('latitude').onchange = refreshMarker;
     document.getElementById('longitude').onchange = refreshMarker;
 
-    // when marker is dragged update input values
     marker.addListener('drag', function() {
         latlng = marker.getPosition();
         newlat = (Math.round(latlng.lat() * 1000000)) / 1000000;
@@ -106,9 +125,18 @@ function initMap2() {
 
     marker.addListener('dragend', function() {
         map.panTo(marker.getPosition());
+        latLng = marker.getPosition();
+        if(1 ==1){
+            document.getElementById("submit").disabled = false;
+            console.log("AAAAAAA");
+        }
+        else{
+            document.getElementById("submit").disabled = true;
+        }
     });
 
-    $('input[type=text]').on('keydown', function(e) {
+
+    $('input[type=text][id=address]').on('keydown', function(e) {
         if (e.which == 9) {
             var address = document.getElementById('address').value
             geocoder.geocode({ 'address': address, 'region': 'BR' }, function(results, status) {
@@ -128,10 +156,7 @@ function initMap2() {
 
         }
     });
-
-
 }
-
 
 
 function parse_end(lat, lng) {

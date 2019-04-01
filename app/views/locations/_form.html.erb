@@ -1,24 +1,14 @@
 <% provide :head_tags do %>
 <meta name='turbolinks-visit-control' content='reload'>
-
 <script>
-
 document.addEventListener("DOMContentLoaded", function() {
     initMap2();
-      
-   $('input[type=text]').on('keydown', function(e) {
-    if (e.which == 9) {
-         var address = document.getElementById('address').value 
-        endereco(address)
-    }
-});
+
 });
 </script>
 <% end %>
 <%= form_with(model: location, local: true) do |form| %>
-
-
-  <div class="fox">
+<div class="fox">
     <br><br><br><br><br>
     <h1>Workplaces</h1>
     <%= form.label :'Place Description'  %> <br>
@@ -27,14 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
     <%= form.text_field :address, {id: 'address'} %> <br>
     <%= form.label :Meters %> <br>
     <%= form.number_field :meters %> <br>
-     <%= form.label :latitude %> <br>
+    <%= form.label :latitude %> <br>
     <%= form.text_field :latitude, {id: 'latitude' }%> <br>
-   <%= form.label :longitude %> <br>
+    <%= form.label :longitude %> <br>
     <%= form.text_field :longitude, {id: 'longitude' }%> <br>
     <%= form.label :'Your ID'%> <br>
     <%= form.text_field :user_id, :value => current_user.id, :readonly => true %><br>
-  <div class="map" id="map2"></div>
+    <div class="map" id="map2"></div>
     <%= form.submit %>
-    </div>
+</div>
 <% end %>
-

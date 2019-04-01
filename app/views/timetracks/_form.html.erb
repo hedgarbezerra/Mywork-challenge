@@ -2,14 +2,10 @@
 <meta name='turbolinks-visit-control' content='reload'>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    initMap2();
+    var locations = <%= raw locToJson %> ;
+    initMap2(locations);
     startTime();
-    $('input[type=text]').on('keydown', function(e) {
-        if (e.which == 9) {
-            var address = document.getElementById('address').value
-            endereco(address)
-        }
-    });
+
 });
 </script>
 <% end %>
@@ -32,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="fox">
     <h1>Savepoint</h1>
     <%= form.label :address %> <br>
-    <%= form.text_field :address, {id: 'address'} %> <br>
+    <%= form.text_field :address, {id: 'address', placeholder: 'Type an address'} %> <br>
     <%= form.label :latitude %> <br>
     <%= form.text_field :latitude, {id: 'latitude' } %> <br>
     <%= form.label :longitude%> <br>
@@ -42,6 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <%= form.label :'Your ID' %> <br>
     <%= form.text_field :user_id, :value => current_user.id, :readonly => true %>
     <div class="map" id="map2"></div>
-    <%= form.submit %>
+    <%= form.submit id: "submit" ,disabled: true %>
 </div>
 <% end %>

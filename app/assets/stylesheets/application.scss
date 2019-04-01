@@ -219,7 +219,10 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background: #2ecc71;
 }
-
+input[type="submit"]:disabled{ 
+  background-color: #cccccc;
+  color: #666666;
+}
 .form_login {
     left: 50%;
     top: 50%;
@@ -255,5 +258,18 @@ input[type="submit"]:hover {
     color: white;
     border-radius: 24px;
     transition: 0.30s;
+}
 
+.bigmap {
+    margin: 50px 10px 10px 50px;
+    width: 850px;
+    height: 500px;
+    background: #1A1C37;
+    border-radius: 20px;
+    border: 2px solid #2ecc71;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate3d(-50%, -50%, 0);
+ 
 }
