@@ -44,8 +44,6 @@ function initMap(lat, lng) {
 
 function initMap2(locations) {
     geocoder = new google.maps.Geocoder();
-    var Circle ;
-    var bounds;
     var lat = document.getElementById('latitude').value;
     var lng = document.getElementById('longitude').value;
     if (!lat || !lng) {
@@ -73,7 +71,7 @@ function initMap2(locations) {
         var latx = locations[location].latitude
         var lngx = locations[location].longitude
         var centro = new google.maps.LatLng(latx, lngx);
-            Circle = new google.maps.Circle({
+        var Circle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
             strokeWeight: 2, 
@@ -83,8 +81,7 @@ function initMap2(locations) {
             map: map,
             center: centro,
             radius: locations[location].meters
-        });
-           bounds = Circle.getBounds();
+        }); 
     };
 
     google.maps.event.addListener(map, 'click', function(event) {
@@ -122,17 +119,20 @@ function initMap2(locations) {
     });
 
 
-
+    
     marker.addListener('dragend', function() {
         map.panTo(marker.getPosition());
         latLng = marker.getPosition();
-        if(1 ==1){
+        document.getElementById("submit").disabled = false;
+        //Here I'd make the condition to check if the marker is inside the 
+        //circle's radius allowing the user to submit his savepoint
+        /*if(){
             document.getElementById("submit").disabled = false;
-            console.log("AAAAAAA");
+            console.log(bounds);
         }
         else{
             document.getElementById("submit").disabled = true;
-        }
+        }*/
     });
 
 
