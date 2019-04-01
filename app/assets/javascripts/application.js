@@ -193,3 +193,38 @@ function checkTime(i) {
 }
 
 
+function boundary(locations){
+    lat = -23.5631043;
+    lng = -46.6543825;
+    var myCoords = new google.maps.LatLng(lat, lng);
+    var mapOptions = {
+        center: myCoords,
+        zoom: 10,
+        disableDefaultUI: true,
+        zoomControl: true
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myCoords,
+        animation: google.maps.Animation.DROP,
+        map: map,
+        draggable: true
+    });
+
+    for (var location in locations) {
+        var latx = locations[location].latitude
+        var lngx = locations[location].longitude
+        var centro = new google.maps.LatLng(latx, lngx);
+        var Circle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2, 
+            clickable: true,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: centro,
+            radius: locations[location].meters
+        }); 
+    };
+}
