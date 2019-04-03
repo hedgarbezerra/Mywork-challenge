@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 #gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-rails', '3.8'
-#
+gem 'gmaps4rails'
 gem 'jquery-validation-rails'
 gem 'bootstrap-sass','~> 3.4.1'
 gem 'autoprefixer-rails'
