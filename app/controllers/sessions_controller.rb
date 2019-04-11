@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to index_path(current_user)
     else
-       format.html {redirect_to login_path,  danger: " Username or password invalid" }
+       flash[:danger] = " Username or password invalid"
+       redirect_to login_path
 
     end
   end
