@@ -5,7 +5,7 @@ locations using Rails<br>
 Database: MySQL<br>
 More info on the database settings on the file **database.yml**<br>
 Providede with some seeds so you don't wast time
-
+Try it on Heroku: https://guarded-citadel-36488.herokuapp.com
 # Getting Started
 
 1. **Entering the project folder**<br>
