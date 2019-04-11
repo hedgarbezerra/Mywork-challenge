@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <%= form.label :'Your ID' %> <br>
     <%= form.text_field :user_id, :value => current_user.id, :readonly => true %>
     <div class="map" id="map2"></div>
-    <%= form.submit id: "submit" ,disabled: true %>
+    <%= form.submit id: "submit" %>
 </div>
 <% end %>

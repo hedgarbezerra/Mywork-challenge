@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
-
+//= require_tree .
 
 var map;
 var directionsDisplay;
@@ -123,21 +123,10 @@ function initMap2(locations) {
     marker.addListener('dragend', function() {
         map.panTo(marker.getPosition());
         latLng = marker.getPosition();
-        document.getElementById("submit").disabled = false;
-        //Here I'd make the condition to check if the marker is inside the 
-        //circle's radius allowing the user to submit his savepoint
-        /*if(){
-            document.getElementById("submit").disabled = false;
-            console.log(bounds);
-        }
-        else{
-            document.getElementById("submit").disabled = true;
-        }*/
     });
 
 
-    $('input[type=text][id=address]').on('keydown', function(e) {
-        if (e.which == 9) {
+    $('input[type=text][id=address]').on('focusout', function(e) {
             var address = document.getElementById('address').value
             geocoder.geocode({ 'address': address, 'region': 'BR' }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -154,7 +143,7 @@ function initMap2(locations) {
                 }
             });
 
-        }
+        
     });
 }
 
