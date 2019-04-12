@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
   def index
     if  params[:search].present?
       @search = params[:search]
-      @locations = Location.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%") 
+      @locations = Location.where("id LIKE :search OR user_id LIKE :search", search: "%#{@search}%")
     else 
        @locations = Location.all
     end
