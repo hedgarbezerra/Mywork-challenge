@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //
-//= require jquery
+//= require jquery3
+//= require popper
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
+//= require_tree .
+
 
 var map;
 var directionsDisplay;
@@ -116,7 +119,6 @@ function initMap2(locations) {
         document.getElementById('latitude').value = newlat;
         document.getElementById('longitude').value = newlng;
     });
-
 
     
     marker.addListener('dragend', function() {

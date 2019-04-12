@@ -3,17 +3,16 @@ class LocationsController < ApplicationController
   before_action :require_logged_in_user
   # GET /locations
   # GET /locations.json
-  def index
 
+  def index
     if  params[:search].present?
       @search = params[:search]
-      @locations = Location.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%")
-      #@locations = Location.joins(:user).where("users.name = ?","%#{@search}%")
-      #@locations = Location.joins(:user).where("users.name = ? ","%#{@search}%")
+      @locations = Location.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%") 
     else 
        @locations = Location.all
     end
   end
+
 
   # GET /locations/1
   # GET /locations/1.json

@@ -1,85 +1,79 @@
 
-<nav class="navbar navbar-inverse " style="background-color: #1A1C37" "color: white">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://github.com/hedgarbezerra/Mywork-challenge">MyWork </a>
-        </div>
-
-        <% if !user_signed_in? %>
-            
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://github.com/hedgarbezerra">MyWork <i class="fab fa-github"></i> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if !user_signed_in? %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">  
+    </ul> 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <%= link_to "<span class='glyphicon glyphicon-user'> SignUp </span>".html_safe, signup_path %>
+                <li class="nav-item">
+                   <a href="/login" class="nav-link"> Login <i class="fas fa-sign-in-alt"></i></a>
                 </li>
-                <li>
-                    <%= link_to "<span class='glyphicon glyphicon-log-in'> Login </span>".html_safe, login_path %>
+                <li class="nav-item">
+                   <a href="/signup" class="nav-link"> Sign up <i class="fas fa-user-plus"></i></a>
                 </li>
             </ul>
         </div>
       <% end %>
-
-        <% if user_signed_in? && current_user.user_role==1 %>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li>
-                    <%= link_to 'Home', index_path %>
+    <% if user_signed_in? && current_user.user_role==1 %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">   
+                <li class="nav-item">
+                   <a href="/" class="nav-link"> Home</a>
+              
                 </li>
-                <li>
-                    <%= link_to 'Savepoint', savepoint_path %>
+                <li class="nav-item">
+                    <a href="/savepoint" class="nav-link"> Savepoint </a>
                 </li>
-                <li>
-                    <%= link_to 'Offices', offices_path %>
+                <li class="nav-item">
+                    <a href="/offices" class="nav-link"> Offices table </a>
                 </li>
-                <li>
-                    <%= link_to 'Offices Map', map_path %>
+                <li class="nav-item">
+                    <a href="/map" class="nav-link"> Offices map </a>
                 </li>
-                <li>
-                    <%= link_to 'New Office ', office_path %>
-                </li>
-
-                <li>
-                    <%= link_to 'Account', account_path %>
+                <li class="nav-item">
+                    <a href="/office" class="nav-link"> New Office  </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <%= link_to "<span class='glyphicon glyphicon-log-out'> Logout </span>".html_safe, logout_path, method: :delete  %>
+                  <li class="nav-item">
+                    <a href="/account" class="nav-link">Account  <i class="fas fa-user-cog"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a data-method="delete" href="/logout" class="nav-link"> Logout <i class="fas fa-sign-out-alt"></i></a>
+                    
                 </li>
             </ul>
-                  <ul class="nav navbar-nav navbar-right">
+                 
  
       <% end %>
 
       <% if user_signed_in? && current_user.user_role==2 %>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li>
-                    <%= link_to 'Home', index_path %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">   
+                <li class="nav-item">
+                   <a href="/" class="nav-link"> Home </a>
                 </li>
-                <li>
-                    <%= link_to 'Savepoint', savepoint_path %>
+                <li class="nav-item">
+                  <a href="/savepoint" class="nav-link"> Savepoint </a>
                 </li>
-                <li>
-                    <%= link_to 'Offices Map', map_path %>
+                <li class="nav-item">
+                      <a href="/map" class="nav-link"> Offices map </a>
                 </li>
-                 <li>
-                    <%= link_to 'Account', account_path %>
-                </li>
+                   
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
-                <li>
-                    <%= link_to "<span class='glyphicon glyphicon-log-out'> Logout </span>".html_safe, logout_path, method: :delete  %>
-                    
+                <li class="nav-item">
+                    <a href="/account" class="nav-link">Account <i class="fas fa-user-cog"></i></a>
+                </li>
+                <li class="nav-item">
+                   <a data-method="delete" href="/logout" class="nav-link"> Logout <i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
-
- 
 <% end %>
-    </div>
+     
+  </div>
 </nav>

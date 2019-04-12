@@ -10,7 +10,7 @@ class TimetracksController < ApplicationController
       @timetracks = Timetrack.where('id LIKE ? OR user_id LIKE ?', "%#{@search}%", "%#{@search}%")
     
     else 
-       @timetracks = Location.all
+       @timetracks = Timetrack.all
     end
   end
    
