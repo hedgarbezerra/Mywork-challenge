@@ -32,7 +32,7 @@
       <% end %>
 
       <% else 
-      if current_user.user_role == 1 && timetrack.user.user_role != 1 %> 
+      if current_user.user_role == 1 %> 
       <tr scope="row">
             <td><%= timetrack.id%></td>
             <td><%= timetrack.user.id%></td>
