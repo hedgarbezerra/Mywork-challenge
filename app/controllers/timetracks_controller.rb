@@ -11,7 +11,8 @@ class TimetracksController < ApplicationController
     
     else 
        @timetracks = Timetrack.all
-    end
+     end
+    
   end
    
   
