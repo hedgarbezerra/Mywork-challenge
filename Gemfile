@@ -25,8 +25,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 #gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-rails', '3.8'
-gem 'bootstrap-sass','~> 3.4.1'
+gem 'bootstrap', '~> 4.3.1'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'autoprefixer-rails'
+gem 'popper_js', '~> 1.14.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'sprockets', '~> 3.7', '>= 3.7.2'
 gem 'sassc-rails', '>= 2.1.0'
@@ -50,10 +52,10 @@ group :development do
 end
 
 group :production do
-	gem 'pg'
+  gem 'pg'
 
 end
-	
+  
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
