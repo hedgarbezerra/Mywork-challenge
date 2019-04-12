@@ -7,8 +7,7 @@ class TimetracksController < ApplicationController
 
     if  params[:search].present?
       @search = params[:search]
-      @timetracks = Timetrack.where("id LIKE CAST (:search AS INTEGER) OR user_id LIKE CAST (:search AS INTEGER)", search: "%#{@search}%")
-    
+      @timetracks = Timetrack.where("id LIKE CAST (:search AS INTEGER) OR user_id LIKE CAST (:search AS INTEGER)", search: {@search})  
     else 
        @timetracks = Timetrack.all
      end
