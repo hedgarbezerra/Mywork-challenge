@@ -1,15 +1,10 @@
-<p id="notice">
-    <%= notice %>
-</p>
-<h2>Welcome back,
-    <%= current_user.name %>
-</h2>
+<p id="notice"><%= notice %></p>
 <div class="search">
-    <%= form_tag( timetracks_path, :method => 'GET') do %>
-    <strong> Specific ID or user? </strong>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag 'Search', name: nil %>
-    <% end %>
+<%= form_tag(locations_path, :method => 'GET') do %>
+  <strong> Specific ID or user? </strong>
+   <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
 </div>
 <div class="modal c" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -17,58 +12,31 @@
         </div>
     </div>
 </div>
-<table class="table table-dark">
-    <thead>
-        <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Name </th>
-            <th scope="col">Date</th>
-            <th scope="col">Details </th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @timetracks.each do |timetrack| %>
-        <% if current_user.user_role != 1 && timetrack.user.id == current_user.id  %>
-        <tr scope="row">
-            <td>
-                <%= timetrack.id%>
-            </td>
-            <td>
-                <%= timetrack.user.id%>
-            </td>
-            <td>
-                <%= timetrack.user.name %>
-            </td>
-            <td>
-                <%= timetrack.user.created_at %>
-            </td>
-            <td>
-                <%= link_to "Details", timetrack, :class => "btn btn-primary", :remote => true %>
-            </td>
-        </tr>
-        <% end %>
-        <% else 
-      if current_user.user_role == 1 %>
-        <tr scope="row">
-            <td>
-                <%= timetrack.id%>
-            </td>
-            <td>
-                <%= timetrack.user.id%>
-            </td>
-            <td>
-                <%= timetrack.user.name %>
-            </td>
-            <td>
-                <%= timetrack.user.created_at %>
-            </td>
-            <td>
-                <%= link_to "Details", timetrack,  :class => "btn btn-primary", :remote => true %>
-            </td>
-        </tr>
-        <% end %>
-        <% end %>
-    </tbody>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th>#ID</th>
+      <th>User</th>
+      <th>Description</th>
+      <th>Details</th>
+      <th>Edit</th>   
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= location.id %></td>
+        <td><%= location.user.name %></td>
+        <td><%= location.desc %></td>
+        <td><%= link_to 'Details ', location, :class => "btn btn-primary", :remote => true %></td>
+        <td><%= link_to 'Edit', edit_location_path(location), :class => "btn btn-info"  %></td>
+  
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+
 <br>
+
+
