@@ -23,8 +23,8 @@
         <td><%= location.id %></td>
         <td><%= location.user.name %></td>
         <td><%= location.desc %></td>
-        <td><%= link_to 'Details ', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+        <td><%= link_to 'Details ', location,  class => "btn btn-primary", :remote => true %></td>
+        <td><%= link_to 'Edit', edit_location_path(location), class => "btn btn-info" %></td>
   
       </tr>
     <% end %>

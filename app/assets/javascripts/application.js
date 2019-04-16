@@ -13,6 +13,7 @@
 //
 //= require jquery3
 //= require popper
+//= require jquery.validate
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require activestorage
@@ -194,13 +195,6 @@ function boundary(locations){
         zoomControl: true
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    var marker = new google.maps.Marker({
-        position: myCoords,
-        animation: google.maps.Animation.DROP,
-        map: map,
-        draggable: true
-    });
-
     for (var location in locations) {
         var latx = locations[location].latitude
         var lngx = locations[location].longitude
