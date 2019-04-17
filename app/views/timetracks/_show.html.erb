@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %> </p>  
+<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Detailed timetrack #<%= @timetrack.id %> </h5>
+   </div>     
+        <div class="modal-body">
+    <p>
+    <strong>User name: </strong>
+     <%= @timetrack.user.name %>
+</p>
+<p>
+    <strong>User commentary: </strong>
+    <%= @timetrack.comment %>
+</p>
+<p>
+    <strong>Address: </strong>
+    <span id="address"></span>
+</p>
+<p>
+    <strong>Longitude:</strong>
+    <%= @timetrack.longitude %>
+</p>
+<p>
+    <strong>Latitude:</strong>
+    <%= @timetrack.latitude %>
+</p>
+<p>
+    <strong>This happend on: </strong>
+    <%= @timetrack.created_at %>
+</p>
+      <div id="map" class="map"> </div> 
+    
+ </div> 
+ <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
