@@ -211,12 +211,9 @@ function boundary(locations){
             radius: locations[location].meters
         }); 
     };
-}
+};
 
-
-
-
-  $("#form").ready(function () { 
+$("#form").ready(function () { 
   $("#form").validate({
    rules: {
                 "user[name]":{
@@ -284,5 +281,4 @@ $("#fox").ready(function () {
   
     });
    });
-
 
