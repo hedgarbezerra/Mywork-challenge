@@ -212,3 +212,77 @@ function boundary(locations){
         }); 
     };
 }
+
+
+
+
+  $("#form").ready(function () { 
+  $("#form").validate({
+   rules: {
+                "user[name]":{
+                                required: true,
+                                minlength: 10,
+                                maxlength: 30,
+                               
+                 },
+                "user[email]": {
+                    required: true,
+                     email: true,
+                       },
+                 "user[username]":{
+                            required: true,
+                            minlength: 5,
+                            maxlength: 20,
+                                
+                 },
+                 "user[password]":{
+                        required: true,
+                        minlength: 6,
+                        maxlength: 15,
+                 },
+                     
+   },
+   messages:{
+                   
+      "user[name]": {
+                 accept: "Fill the name field corretly"
+                  },
+
+      "user[email]": {
+                 accept: "Email is invalid, insert another one"
+                  },
+      "user[username]": {
+                 accept: "Username is invalid, insert another one!"
+                  },
+     "user[password]": {
+                 accept: "Password is invalid, insert another one!"
+                  },                                     
+   }
+});
+});
+
+$("#fox").ready(function () { 
+ $("#fox").validate({
+       rules : {
+             "session[username]":{
+                    required:true,
+                  
+             },
+             "session[password]":{
+                    required:true
+             }
+          },
+             
+        messages:{
+             "session[username]":{
+                required:"Please, insert your password "},
+             "session[password]":{
+                required:"Insert your username"
+             }   
+                        
+       }
+  
+    });
+   });
+
+

@@ -12,19 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
 <% end %>
 <div id="clock" class="clock"></div>
 <%= form_with(model: timetrack, local: true) do |form| %>
-<% if timetrack.errors.any? %>
-<div id="error_explanation">
-    <h2>
-        <%= pluralize(timetrack.errors.count, "error") %> prohibited this timetrack from being saved:</h2>
-    <ul>
-        <% timetrack.errors.full_messages.each do |message| %>
-        <li>
-            <%= message %>
-        </li>
-        <% end %>
-    </ul>
-</div>
-<% end %>
 <br>
 <div class="fox">
     <h1>Savepoint</h1>
