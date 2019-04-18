@@ -14,11 +14,12 @@
 //= require jquery3
 //= require popper
 //= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
-
+//= require_tree .
 
 
 var map;
@@ -211,9 +212,9 @@ function boundary(locations){
             radius: locations[location].meters
         }); 
     };
-};
+}
 
-$("#form").ready(function () { 
+  $("#form").ready(function () { 
   $("#form").validate({
    rules: {
                 "user[name]":{
@@ -281,4 +282,3 @@ $("#fox").ready(function () {
   
     });
    });
-
